@@ -16,3 +16,23 @@ app.get('/api/info', (req, res) => {
  version: '1.0'
  });
 });
+app.get('/api/users/search', (req, res) => {
+  const { name, page = 1 } = req.query;
+  res.json({ name, page });
+});
+app.get('/api/users/:id', (req, res) => {
+  const id = req.params.id;
+  res.json({
+    message: 'Pobrano użytkownika',
+    id: id
+  });
+});
+app.post('/api/users', (req, res) => {
+  res.status(201).json({ message: 'Utworzono użytkownika' });
+});
+app.put('/api/users/:id', (req, res) => {
+  res.status(200).json({ message: `Zaktualizowano użytkownika o ID: ${req.params.id}` });
+});
+app.delete('/api/users/:id', (req, res) => {
+  res.status(204).send(); 
+});
